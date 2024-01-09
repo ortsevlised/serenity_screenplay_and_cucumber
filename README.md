@@ -1,37 +1,48 @@
-### Hello!
+# SimpleCalc Testing Project
+This project demonstrates a comprehensive approach to testing a simple Kotlin/JVM application named SimpleCalc. 
+It includes unit testing, behavior-driven development (BDD) scenarios, a Python wrapper for test execution, and GitHub Actions for automated testing.
 
-Here is a simple Kotlin/JVM project.
+## Overview of SimpleCalc
+SimpleCalc is a Kotlin object that offers three functionalities:
 
-Inside, you will find a `SimpleCalc` object that can do 3 operations:
-* Add integers
-* Multiply doubles
-* Calculate the sum of even numbers in an array
+- Addition of integers
+- Multiplication of doubles
+- Calculation of the sum of even numbers in an array
 
-### Tasks
+## Project Structure
+- src: Contains the SimpleCalc Kotlin object and its implementation.
+- tests: Includes the BDD scenarios.
+- unitTests: Includes the unit tests.
+- simple-calc-test-runner.py: A Python script to run the tests.
+- .github/workflows: Contains the GitHub Actions workflow file.
 
-1. Implement unit tests for `SimpleCalc` with a framework of your choice (JUnit, TestNG, etc.)
-2. Create behavior scenarios and implement them with a framework of your choice (Cucumber, Serenity, etc.)
-3. Write a Python wrapper to run your tests
-4. Write GitHub Actions automation that will use your Python wrapper to run tests
+## Tasks
+1. Unit Tests Implementation: Unit tests for SimpleCalc are implemented using JUnit.
+2. BDD Scenarios Implementation: BDD scenarios are written and executed using Serenity BDD with Cucumber.
+3. Python Wrapper: A Python script to run both unit tests and BDD scenarios, manage test reports, and handle logs.
+4. GitHub Actions Automation: A GitHub Actions workflow to automate the execution of tests using the Python wrapper.
 
-### BDD scenarios requirements
+## BDD Scenarios
+BDD scenarios are crafted to cover both basic and advanced use cases of SimpleCalc, showcasing thorough testing practices. The scenarios are designed to demonstrate the usage of Serenity BDD together with Cucumber following the Screenplay pattern.
 
-Try to imagine basic and advances use cases to cover as much as possible.
-Imagine it's your project and you really care about its quality.
-Try to demonstrate the deep knowledge of a BDD framework you choose.
+## Python Wrapper
+The Python wrapper, simple-calc-test-runner.py, facilitates:
 
-### Python wrapper requirements
+- Separate execution of unit tests and BDD scenarios.
+- Saving of reports in a specified reports directory.
+- Logging of stdout and stderr in the logs directory.
 
-Yes, shell scripts are good enough in this case, but this is a testing exercise, so...
-
-Python wrapper should be capable of:
-1. Separately run unit tests and BDD scenarios
-2. Save reports in parametrized `reports` directory
-3. Save stdout and stderr logs in `logs` directory
-
-```shell
-# Run unit tests
-simple-calc-test-runner --run unittests --reports-dir unit-test-reports
-# Run BDD scenarios
-simple-calc-test-runner --run scenarios
+## Usage:
 ```
+# Run unit tests
+python simple-calc-test-runner.py --run unittests --reports-dir unit-test-reports
+
+# Run BDD scenarios
+python simple-calc-test-runner.py --run scenarios --reports-dir bdd-test-reports
+``` 
+
+## GitHub Actions
+The .github/workflows directory contains a workflow file to automate testing. The workflow triggers on manual dispatch, allowing the selection of test types and specification of directories for reports.
+
+## Running the Tests Locally
+To run the tests locally, ensure you have Python and the required JDK installed. Use the simple-calc-test-runner.py script as shown above to execute the tests and generate reports.
