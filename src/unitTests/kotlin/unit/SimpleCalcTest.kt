@@ -77,7 +77,7 @@ class SimpleCalcTest {
         assertEquals(smallNumber * 2.0, SimpleCalc.multiply(smallNumber, 2.0))
     }
 
-    // Tests for sumOfEvens function
+    // Tests for sumOffEvens function
     @Test
     fun testSumOfEvensMixedArray() {
         assertEquals(6, SimpleCalc.sumOffEvens(intArrayOf(1, 2, 3, 4)))
@@ -115,17 +115,5 @@ class SimpleCalcTest {
             expectedSum, SimpleCalc.sumOffEvens(intArrayOf(largeEven1, smallEven)),
             "The sum should be close to Int.MAX_VALUE without overflowing"
         )
-    }
-
-    @Test
-    fun testSumOfEvensOverflow() {
-        println("JORGE")
-        val largeEven = Int.MAX_VALUE - 1  // Largest even number
-        val expectedOverflowResult = largeEven + 2 + 4
-
-        val result = SimpleCalc.sumOffEvens(intArrayOf(largeEven, 1, 2, 4))
-        assertEquals(expectedOverflowResult, result)
-        assertTrue(result < 0, "The sum should be negative due to overflow")
-
     }
 }

@@ -1,8 +1,8 @@
-package serenity.Tasks
+package serenity.tasks
 
-import serenity.Abilities.UseCalculator
 import net.serenitybdd.screenplay.Actor
 import net.serenitybdd.screenplay.Task
+import serenity.abilities.UseCalculator
 
 private const val ADDITION_RESULT = "multiplication of 2 doubles"
 

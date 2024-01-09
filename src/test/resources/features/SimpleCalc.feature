@@ -1,7 +1,7 @@
 Feature: SimpleCalc tests
 
-  Scenario Outline: Adding <title>
-    Given Jorge is using the calculator
+  Scenario Outline: Adding two Integers
+    Given Jorge is using the calculator to <title>
     When he adds the values <value1> and <value2>
     Then he sees the result of the sum of 2 integers is a int of value <result>
 
@@ -15,8 +15,8 @@ Feature: SimpleCalc tests
       | max integer overflows             | 2147483647 | 1      | -2147483648 |
 
 
-  Scenario Outline: Multiplying <title>
-    Given Jorge is using the calculator
+  Scenario Outline: Multiplying two doubles
+    Given Jorge is using the calculator to <title>
     When he multiplies <value1> by <value2>
     Then he sees the result of the multiplication of 2 doubles is a double of value <result>
 
@@ -30,8 +30,8 @@ Feature: SimpleCalc tests
       | large values result in Infinity          | 1.0E308  | 2.0    | Double.POSITIVE_INFINITY |
       | small values result in negative Infinity | -1.0E308 | 2.0    | Double.NEGATIVE_INFINITY |
 
-  Scenario Outline: Adding even numbers in <title>
-    Given Jorge is using the calculator
+  Scenario Outline: Adding even numbers in array
+    Given Jorge is using the calculator to <title>
     When he adds the even numbers in <values>
     Then he sees the result of the addition of even numbers is a int of value <result>
 

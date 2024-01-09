@@ -1,6 +1,6 @@
-package serenity.Tasks
+package serenity.tasks
 
-import serenity.Abilities.UseCalculator
+import serenity.abilities.UseCalculator
 import net.serenitybdd.screenplay.Actor
 import net.serenitybdd.screenplay.Task
 

@@ -1,22 +1,27 @@
-package serenity.Steps
+package serenity.steps
 
-import serenity.Tasks.AddEvenNumbers
-import serenity.Tasks.Multiply
-import serenity.Tasks.Sum
-import serenity.Abilities.UseCalculator.Companion.useCalculator
+import Log
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
+import net.serenitybdd.screenplay.GivenWhenThen.seeThat
 import net.serenitybdd.screenplay.actors.Cast
 import net.serenitybdd.screenplay.actors.OnStage
-import org.assertj.core.api.AssertionsForClassTypes.assertThat
+import org.hamcrest.core.IsEqual.equalTo
+import serenity.Utils.convertExpectedResult
+import serenity.abilities.UseCalculator.Companion.useCalculator
+import serenity.questions.CalculationResult
+import serenity.tasks.AddEvenNumbers
+import serenity.tasks.Multiply
+import serenity.tasks.Sum
 
 
 class CalculatorSteps {
-    @Given("{} is using the calculator")
-    fun user_is_using_the_calculator(actorName: String) {
+    @Given("{word} is using the calculator to {}")
+    fun user_is_using_the_calculator(actorName: String, action: String) {
         OnStage.setTheStage(Cast.whereEveryoneCan(useCalculator()))
-        OnStage.theActorCalled(actorName)
+        val actor = OnStage.theActorCalled(actorName)
+        actor.attemptsTo(Log.info(action))
     }
 
     @When("he adds the values {int} and {int}")
@@ -24,7 +29,7 @@ class CalculatorSteps {
         OnStage.theActorInTheSpotlight().attemptsTo(Sum.integers(x, y))
     }
 
-    @When("he multiplies {} by {}")
+    @When("he multiplies {word} by {word}")
     fun multiplyTwoDoubles(x: String, y: String) {
         OnStage.theActorInTheSpotlight().attemptsTo(Multiply.doubles(x.toDouble(), y.toDouble()))
     }
@@ -40,21 +45,12 @@ class CalculatorSteps {
         OnStage.theActorInTheSpotlight().attemptsTo(AddEvenNumbers.fromIntArray(intArray))
     }
 
-    @Then("he sees the result of the {} is a {} of value {}")
+    @Then("he sees the result of the {} is a {word} of value {}")
     fun heSeesTheResultIsResult(operation: String, type: String, expectedResult: String) {
-        val result = OnStage.theActorInTheSpotlight().recall<Any>(operation)
 
-        val convertedExpectedResult = when (type.lowercase()) {
-            "int" -> expectedResult.toInt()
-            "double" -> when (expectedResult) {
-                "Double.POSITIVE_INFINITY" -> Double.POSITIVE_INFINITY
-                "Double.NEGATIVE_INFINITY" -> Double.NEGATIVE_INFINITY
-                else -> expectedResult.toDouble()
-            }
-
-            else -> throw IllegalArgumentException("Unknown type: $type")
-        }
-
-        assertThat(result).isEqualTo(convertedExpectedResult)
+        OnStage.theActorInTheSpotlight().should(
+            seeThat("Result", CalculationResult(operation), equalTo(convertExpectedResult(type, expectedResult)))
+        )
     }
+
 }

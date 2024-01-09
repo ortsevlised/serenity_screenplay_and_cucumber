@@ -1,4 +1,4 @@
-package serenity.Abilities
+package serenity.abilities
 
 import net.serenitybdd.screenplay.Ability
 
