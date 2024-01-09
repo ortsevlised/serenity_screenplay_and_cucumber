@@ -10,7 +10,7 @@ on:
         type: choice
         options:
           - scenarios
-          - unitTests
+          - unittests
 
       reportsDir:
         description: 'Directory to save reports'
