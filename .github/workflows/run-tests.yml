@@ -34,3 +34,16 @@ jobs:
       - name: Run tests using Python wrapper
         run: |
           python3 simple-calc-test-runner.py --run ${{ github.event.inputs.testRunType }} --reports-dir ${{ github.event.inputs.reportsDir }}
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: ${{ github.event.inputs.reportsDir }}
+
+      - name: Publish Serenity report
+        if: ${{ github.event.inputs.testRunType == 'scenarios' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Serenity Report
+          path: target/site/serenity
