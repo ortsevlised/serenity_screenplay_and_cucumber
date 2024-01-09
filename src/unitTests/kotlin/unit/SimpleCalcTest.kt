@@ -2,7 +2,6 @@ package unit
 
 import SimpleCalc
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class SimpleCalcTest {
@@ -103,7 +102,6 @@ class SimpleCalcTest {
         assertEquals(0, SimpleCalc.sumOffEvens(intArrayOf(-1, -3, -5, -7)))
     }
 
-
     @Test
     fun testSumOfBigEvensNumbers() {
         // Choosing large even numbers that sum up to just below Int.MAX_VALUE
@@ -115,5 +113,13 @@ class SimpleCalcTest {
             expectedSum, SimpleCalc.sumOffEvens(intArrayOf(largeEven1, smallEven)),
             "The sum should be close to Int.MAX_VALUE without overflowing"
         )
+    }
+
+    @Test
+    fun testSumOfEvensLargeArrayAllNegativeNumbers() {
+        // Generate a large array of negative numbers (e.g., size 10000)
+        val largeArray = IntArray(10000) { -it * 2 - 1 }
+
+        assertEquals(0, SimpleCalc.sumOffEvens(largeArray))
     }
 }

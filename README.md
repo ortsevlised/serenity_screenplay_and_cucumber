@@ -46,3 +46,8 @@ The .github/workflows directory contains a workflow file to automate testing. Th
 
 ## Running the Tests Locally
 To run the tests locally, ensure you have Python and the required JDK installed. Use the simple-calc-test-runner.py script as shown above to execute the tests and generate reports.
+
+## Limitations and Assumptions
+SimpleCalc assumes valid input types and ranges, it does not explicitly handle invalid inputs or data types.<br>
+Calculations resulting in values beyond the range of the data type may not be accurate.<br>
+The sum of even numbers functionality expects an array of integers.<br>Non-integer values or malformed arrays are not handled.
