@@ -7,6 +7,11 @@ on:
         description: 'Type of tests to run'
         required: true
         default: 'scenarios'
+        type: choice
+        options:
+          - scenarios
+          - unitTests
+
       reportsDir:
         description: 'Directory to save reports'
         required: true
