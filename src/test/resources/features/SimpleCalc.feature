@@ -10,7 +10,7 @@ Feature: SimpleCalc tests
       | add two positives integers            | 1           | 2      | 3           |
       | add two negatives integers            | -5          | -9     | -14         |
       | add a positive and a negative integer | 4           | -3     | 1           |
-      | add two zeroes                        | 0           | 0      | 0           |
+      | add two zeros                         | 0           | 0      | 0           |
       | add max integer and zero              | 2147483647  | 0      | 2147483647  |
       | add max integer overflows             | 2147483647  | 1      | -2147483648 |
       | add min integer underflow             | -2147483648 | -1     | 2147483647  |
@@ -38,11 +38,12 @@ Feature: SimpleCalc tests
     Then he sees the result of the addition of even numbers is a int of value <result>
 
     Examples:
-      | title                                                | values         | result |
-      | sum even numbers in an array of mixed numbers        | 2,3,6          | 8      |
-      | sum even numbers in an array of all odd numbers      | 1,3,9,11       | 0      |
-      | sum even numbers in an array of all even numbers     | 10,12,14,20    | 56     |
-      | sum even numbers in an array of empty array          |                | 0      |
-      | sum even numbers in an array of all negative numbers | -1,-2,-3,-4,-5 | -6     |
+      | title                                                | values          | result |
+      | sum even numbers in an array of mixed numbers        | 2,3,6           | 8      |
+      | sum even numbers in an array of all odd numbers      | 1,3,9,11        | 0      |
+      | sum even numbers in an array of all even numbers     | 10,12,14,20     | 56     |
+      | sum even numbers in an empty array                   |                 | 0      |
+      | sum even numbers in an array of all zeros            | 0,0,0,0,0,0,0,0 | 0      |
+      | sum even numbers in an array of all negative numbers | -1,-2,-3,-4,-5  | -6     |
 
 
